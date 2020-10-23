@@ -138,7 +138,13 @@ void deleteOne(vector<Item>& hashTable, int key){
 
 void display(vector<Item> hashTable){
     for(int i = 0; i < hashTable.size(); i++){
-        cout << i << "|\t" << hashTable.at(i).value;
+        cout << i << "|\t";
+        if(hashTable.at(i).emptySinceStart == true || hashTable.at(i).emptyAfterRemoval == true){
+            
+        }
+        else{
+            cout << hashTable.at(i).value;
+        }
         cout << endl;
     }
 }
