@@ -58,8 +58,12 @@ int modTwo(int key){
 
 multiHash(string key){
     int pos = 0;
+    MULT = 3;
 
-    for()
+    for(int i = 0: key){
+        pos = (pos * MULT) + (int)key.at(i);
+    }
+    return pos % 11;
 }
 
 
