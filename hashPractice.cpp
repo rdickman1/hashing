@@ -21,22 +21,22 @@ int modHash(int key){
 
 // Mid-square base 10
 
-int midTen(int key, int size, int R){
+int midTen(int key){
 
     int eDigit;
 
     key *= key;
     string num = to_string(key);
     
-    eDigit = (num.size()-R) / 2;
+    eDigit = (num.size()-2) / 2;
 
     num.erase(num.size()-eDigit, eDigit);
 
-    eDigit = num.size() - R;
+    eDigit = num.size() - 2;
 
     num.erase(0, eDigit);
 
-    return stoi(num) % size;
+    return stoi(num) % 11;
 }
 
 // Mid Square base 2
@@ -56,7 +56,11 @@ int modTwo(int key){
 
 // Multiplicative String
 
+multiHash(string key){
+    int pos = 0;
 
+    for()
+}
 
 
 void insert(vector<Item>& hashTable, int key){
