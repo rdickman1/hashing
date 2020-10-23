@@ -86,7 +86,15 @@ void insert(vector<Item>& hashTable, int key){
         }
         
         //******* Collision Strat ********
-        // update pos
+        // linear Probe
+        pos = (pos + 1) % hashTable.size();
+
+        // Quadractic Probe
+        //int c1 = 2, c2 = 1;
+        //pos = (modHash(key) + (c1 * i) + (c2 * i * i)) % hashTable.size();
+
+        // Double Hash
+        //pos = (modHash(key) + i * ) % hashTable.size();
     }
 
     cout << "Could not Insert.\n";
@@ -99,10 +107,21 @@ void search(vector<Item> hashTable, int key){
             cout << key << " was found!\n";
             return;
         }
+        if(hashTable.at(pos).emptySinceStart == true){
+            cout << key << " not found.\n";
+            return;
+        }
 
         // Collision Strat
-        // update pos
+        // linear probe
+        pos = (pos + 1) % hashTable.size();
+
+        // Quadratic Probe
+        //int c1 = 3, c2 = 1;
+        //pos = (modHash(key) + (c1 * i) + (c2 * i * i)) % hashTable.size(); 
     }
+
+    cout << key << "not found.\n";
 }
 
 int main(){
