@@ -39,43 +39,28 @@ int midTen(int key, int size, int R){
     return stoi(num) % size;
 }
 
-void hashMenu(vector<Item>& hashTable){
-    int choice, userSelect;
-    do{
-        cout << "Please choose from the following options:\n";
-        cout << "1. Insert\n2. Search\n3. Delete\n4. Display Table\n5. Quit\n";
-        cout << "Option: ";
-        cin >> choice;
+// Mid Square base 2
 
-        switch(choice){
-            case 1:
-                cout << "Enter a number to insert: ";
-                cin >> userSelect;
-                insert(hashTable, userSelect);
-                break;
-            case 2:
-                cout << "Enter a nuber to search for: ";
-                cin >> userSelect;
-                search(hashTable, userSelect);
-                break;
-            case 3:
-                //delete
-                break;
-            case 4:
-                //display
-                break;
-            case 5:
-                cout << "Quiting...\n";
-                break;
-            default:
-                cout << "Invailid Selection\n";
-                break;
-        }
-    }while(choice != 5);
+int modTwo(int key){
+
+    int eBit, sBit;
+
+    key *= key;
+    sBit = (32 - 8) / 2;
+    eBit = key >> sBit;
+    eBit = eBit & (0xFFFFFFFF >> (32 - 8));
+
+    return eBit % 11;
+
 }
 
+// Multiplicative String
+
+
+
+
 void insert(vector<Item>& hashTable, int key){
-    int pos = modHash(key);
+    int pos = modTwo(key);
     for (int i = 0; i < hashTable.size(); i++){
         if(hashTable.at(pos).emptyAfterRemoval == true || hashTable.at(pos).emptySinceStart == true){
             hashTable.at(pos).value = key;
@@ -101,7 +86,7 @@ void insert(vector<Item>& hashTable, int key){
 }
 
 void search(vector<Item> hashTable, int key){
-    int pos = modHash(key);
+    int pos = modTwo(key);
     for (int i = 0; i < hashTable.size(); i++){
         if(key == hashTable.at(pos).value){
             cout << key << " was found!\n";
@@ -125,7 +110,7 @@ void search(vector<Item> hashTable, int key){
 }
 
 void deleteOne(vector<Item>& hashTable, int key){
-    int pos = modHash(key);
+    int pos = modTwo(key);
     for (int i = 0; i < hashTable.size(); i++){
         if (key == hashTable.at(pos).value){
             hashTable.at(pos).value = -1;
@@ -150,6 +135,49 @@ void deleteOne(vector<Item>& hashTable, int key){
     }
     cout << key << " not found.\n";
 }
+
+void display(vector<Item> hashTable){
+    for(int i = 0; i < hashTable.size(); i++){
+        cout << i << "|\t" << hashTable.at(i).value;
+        cout << endl;
+    }
+}
+
+void hashMenu(vector<Item>& hashTable){
+    int choice, userSelect;
+    do{
+        cout << "Please choose from the following options:\n";
+        cout << "1. Insert\n2. Search\n3. Delete\n4. Display Table\n5. Quit\n";
+        cout << "Option: ";
+        cin >> choice;
+
+        switch(choice){
+            case 1:
+                cout << "Enter a number to insert: ";
+                cin >> userSelect;
+                insert(hashTable, userSelect);
+                break;
+            case 2:
+                cout << "Enter a nuber to search for: ";
+                cin >> userSelect;
+                search(hashTable, userSelect);
+                break;
+            case 3:
+                //delete
+                break;
+            case 4:
+                display(hashTable);
+                break;
+            case 5:
+                cout << "Quiting...\n";
+                break;
+            default:
+                cout << "Invailid Selection\n";
+                break;
+        }
+    }while(choice != 5);
+}
+
 
 int main(){
 
