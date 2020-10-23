@@ -9,10 +9,32 @@ class HashTable {
         int size = 11
     public:
 
-    insert(int key);
-    search(int key);
-    deleteOne(int key);
-    display();
+    void insert(int key){
+        int pos = modHash(key);
+        hashT[pos].push_back(key);
+    }
+
+    void search(int key){
+        int pos = modHash(key);
+        for (int i = 0; i < size; i++){
+            for(int j = 0; j < hashT[i].size(); j++){
+                if( hashT[i][j] == key){
+                    cout << key << " found!\n";
+                    return;
+                }
+            }
+        }
+        cout << key << " not found.\n";
+    }
+    void deleteOne(int key){
+        int pos = modHash(key);
+        for(int i = 0; i < hashT[pos].size(); i++){
+            if(hashT[pos][i] == key){
+                hashT[pos]
+            }
+        }
+    }
+    void display();
 
 }
 
