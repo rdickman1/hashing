@@ -124,6 +124,33 @@ void search(vector<Item> hashTable, int key){
     cout << key << "not found.\n";
 }
 
+void deleteOne(vector<Item>& hashTable, int key){
+    int pos = modHash(key);
+    for (int i = 0; i < hashTable.size(); i++){
+        if (key == hashTable.at(pos).value){
+            hashTable.at(pos).value = -1;
+            hashTable.at(pos).emptyAfterRemoval = true;
+            cout << key << " deleted.\n";
+            return;
+        }
+        if(hashTable.at(pos).emptySinceStart == true){
+            cout << key << " not found.\n";
+            return;
+        }
+
+        // linear probe
+        pos = (pos + 1) % hashTable.size();
+
+        // Quadratic Probe
+        //int c1 = 6, c2 = 55;
+        //pos = (modHash(key) + c1 * i + c2 * i * i) % hashTable.size();
+
+        // Double Hash
+        //pos = (modHash(key) + i * ) % hashTable.size();
+    }
+    cout << key << " not found.\n";
+}
+
 int main(){
 
     int N = 11;
