@@ -15,8 +15,8 @@ struct Item{
 
 // Modulo hash function
 
-int modHash(int key, int size){
-    return key % size;
+int modHash(int key){
+    return key % 11;
 }
 
 // Mid-square base 10
@@ -70,8 +70,35 @@ void hashMenu(){
     }while(choice != 5);
 }
 
-void insert(vector<Item>& hashTable, int key, int value){
+void insert(vector<Item>& hashTable, int key){
+    int pos = modHash(key);
+    for (int i = 0; i < hashTable.size(); i++){
+        if(hashTable.at(pos).emptyAfterRemoval == true || hashTable.at(pos).emptySinceStart == true){
+            hashTable.at(pos).value = key;
+            hashTable.at(pos).emptySinceStart = false;
+            hashTable.at(pos).emptyAfterRemoval = false;
+            cout << key << " was inserted.\n";
+            return;
+        }
+        
+        //******* Collision Strat ********
+        // update pos
+    }
 
+    cout << "Could not Insert.\n";
+}
+
+void search(vector<Item> hashTable, int key){
+    int pos = modHash(key);
+    for (int i = 0; i < hashTable.size(); i++){
+        if(key == hashTable.at(pos).value){
+            cout << key << " was found!\n";
+            return;
+        }
+
+        // Collision Strat
+        // update pos
+    }
 }
 
 int main(){
