@@ -39,8 +39,8 @@ int midTen(int key, int size, int R){
     return stoi(num) % size;
 }
 
-void hashMenu(){
-    int choice;
+void hashMenu(vector<Item>& hashTable){
+    int choice, userSelect;
     do{
         cout << "Please choose from the following options:\n";
         cout << "1. Insert\n2. Search\n3. Delete\n4. Display Table\n5. Quit\n";
@@ -49,10 +49,14 @@ void hashMenu(){
 
         switch(choice){
             case 1:
-                //insert
+                cout << "Enter a number to insert: ";
+                cin >> userSelect;
+                insert(hashTable, userSelect);
                 break;
             case 2:
-                //search
+                cout << "Enter a nuber to search for: ";
+                cin >> userSelect;
+                search(hashTable, userSelect);
                 break;
             case 3:
                 //delete
@@ -106,7 +110,7 @@ int main(){
     int N = 11;
     vector<Item> hashTable(11);
 
-    hashMenu();
+    hashMenu(hashTable);
 
     return 0;
 }
